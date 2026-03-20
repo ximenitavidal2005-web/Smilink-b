@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smilink – Microchip dental inteligente que monitorea en tiempo real la placa bacteriana y el pH de tu boca. Lleva el control de tu salud periodontal." />
+  <title>Smilink | Tu salud dental, inteligente y en tiempo real</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Smilink | Tu salud dental, inteligente y en tiempo real" />
+  <meta property="og:description" content="Microchip dental que monitorea tu salud periodontal en tiempo real." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/0A2342/00E5FF?text=Smilink" />
+  <meta property="og:locale" content="es_MX" />
+  <meta name="theme-color" content="#00E5FF" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Paleta oscura premium con neón cian */
+      --ink:          #0A1628;
+      --ink-soft:     #112040;
+      --surface:      #0F2035;
+      --surface-2:    #162B47;
+      --cyan:         #00E5FF;
+      --cyan-dim:     rgba(0,229,255,0.12);
+      --cyan-glow:    rgba(0,229,255,0.30);
+      --teal:         #00B4CC;
+      --coral:        #FF6B6B;
+      --gold:         #FFD166;
+      --white:        #FFFFFF;
+      --white-90:     rgba(255,255,255,0.90);
+      --white-70:     rgba(255,255,255,0.70);
+      --white-40:     rgba(255,255,255,0.40);
+      --white-12:     rgba(255,255,255,0.12);
+      --white-06:     rgba(255,255,255,0.06);
+      --wa-green:     #25D366;
+      --wa-dark:      #128C7E;
+      --r-sm:         10px;
+      --r-md:         20px;
+      --r-lg:         32px;
+      --r-xl:         48px;
+      --ease:         cubic-bezier(.4,0,.2,1);
+      --t:            all 0.28s var(--ease);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--ink);
+      color: var(--white-90);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    strong { color: var(--white); }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    h1 { font-size: clamp(2.4rem, 7vw, 4.4rem); font-weight: 900; }
+    h2 { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 800; }
+    h3 { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 700; }
+    p  { font-size: clamp(1rem, 1.6vw, 1.1rem); }
+
+    /* Text gradient utility */
+    .grad {
+      background: linear-gradient(135deg, var(--cyan) 0%, #7DF9FF 50%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-warm {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--coral) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container { width: 92%; max-width: 1080px; margin: 0 auto; }
+    section { padding: 88px 0; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,22,40,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--white-12);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .nav-logo {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #25D366 0%, #1aad52 100%);
+      color: #fff;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 50px;
+      transition: var(--t);
+      white-space: nowrap;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.38);
+      border: 1.5px solid rgba(255,255,255,0.18);
+    }
+    .nav-cta:hover { background: linear-gradient(135deg, #1aad52 0%, #128C7E 100%); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,0.50); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 96vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,229,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,180,204,0.06) 0%, transparent 60%),
+        var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 80px;
+    }
+
+    /* Animated grid background */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    /* Glowing orb */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 10%; right: -5%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,255,0.12) 0%, transparent 65%);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan-dim);
+      border: 1px solid rgba(0,229,255,0.25);
+      color: var(--cyan);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s var(--ease) both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 1.5s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .hero-title {
+      margin-bottom: 28px;
+      max-width: 780px;
+      animation: fadeUp 0.9s 0.1s var(--ease) both;
+    }
+    .hero-subtitle-line {
+      display: block;
+      color: var(--white-70);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      margin-top: 6px;
+    }
+
+    .hero-desc {
+      color: var(--white-70);
+      max-width: 560px;
+      margin-bottom: 40px;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      line-height: 1.7;
+      animation: fadeUp 0.9s 0.2s var(--ease) both;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 52px;
+      animation: fadeUp 0.9s 0.3s var(--ease) both;
+    }
+
+    .btn-wa-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, #25D366 0%, #1aad52 100%);
+      color: #fff;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 1.22rem;
+      padding: 24px 48px;
+      border-radius: 50px;
+      box-shadow: 0 10px 40px rgba(37,211,102,0.50), 0 0 0 4px rgba(37,211,102,0.15);
+      transition: var(--t);
+      letter-spacing: -0.01em;
+      animation: heroBtnPulse 2.8s ease-in-out infinite;
+    }
+    @keyframes heroBtnPulse {
+      0%,100% { box-shadow: 0 10px 40px rgba(37,211,102,0.50), 0 0 0 4px rgba(37,211,102,0.15); }
+      50%      { box-shadow: 0 16px 56px rgba(37,211,102,0.70), 0 0 0 10px rgba(37,211,102,0.08); }
+    }
+    .btn-wa-hero:hover {
+      background: linear-gradient(135deg, #1aad52 0%, #128C7E 100%);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 22px 64px rgba(37,211,102,0.65), 0 0 0 6px rgba(37,211,102,0.20);
+      animation: none;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 1.5px solid rgba(0,229,255,0.30);
+      padding: 15px 28px;
+      border-radius: 50px;
+      transition: var(--t);
+    }
+    .btn-secondary:hover { border-color: var(--cyan); background: var(--cyan-dim); }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      animation: fadeUp 0.9s 0.4s var(--ease) both;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--white-70);
+      font-weight: 500;
+    }
+    .trust-item .icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .hero-float {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11rem;
+      opacity: 0.05;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% - 20px))} }
+    @media (max-width: 760px) { .hero-float { display: none; } }
+
+    /* ===== STATS STRIP ===== */
+    #stats {
+      background: var(--surface);
+      padding: 40px 0;
+      border-top: 1px solid var(--white-06);
+      border-bottom: 1px solid var(--white-06);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .stat {
+      text-align: center;
+      padding: 20px;
+      border-right: 1px solid var(--white-06);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--white-40);
+      font-weight: 500;
+    }
+    @media (max-width: 540px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--white-06); }
+      .stat:last-child { border-bottom: none; }
+    }
+
+    /* ===== PROBLEMA ===== */
+    #problema {
+      background:
+        radial-gradient(ellipse 60% 50% at 90% 50%, rgba(255,107,107,0.06) 0%, transparent 60%),
+        var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .problema-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,107,107,0.12);
+      border: 1px solid rgba(255,107,107,0.25);
+      color: var(--coral);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .problema-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 700px) { .problema-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .problema-title { margin-bottom: 20px; }
+    .problema-desc { color: var(--white-70); line-height: 1.7; }
+    .problema-cards { display: flex; flex-direction: column; gap: 16px; }
+    .problema-card {
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: var(--r-md);
+      padding: 22px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      transition: var(--t);
+      position: relative;
+      overflow: hidden;
+    }
+    .problema-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--coral);
+      opacity: 0;
+      transition: var(--t);
+    }
+    .problema-card:hover { background: rgba(255,107,107,0.06); border-color: rgba(255,107,107,0.25); transform: translateX(6px); }
+    .problema-card:hover::before { opacity: 1; }
+    .problema-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--r-sm);
+      background: rgba(255,107,107,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .problema-card h4 { color: var(--white); font-size: 1rem; margin-bottom: 5px; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700; }
+    .problema-card p  { color: var(--white-70); font-size: 0.9rem; line-height: 1.55; }
+
+    /* ===== SECTION LABELS ===== */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cyan-dim);
+      border: 1px solid rgba(0,229,255,0.22);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .section-title { margin-bottom: 16px; }
+    .section-desc { color: var(--white-70); max-width: 580px; margin-bottom: 52px; line-height: 1.7; }
+
+    /* ===== BENEFICIOS ===== */
+    #beneficios {
+      background:
+        radial-gradient(ellipse 50% 60% at 10% 50%, rgba(0,229,255,0.05) 0%, transparent 60%),
+        var(--surface);
+    }
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .beneficio-card {
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: var(--r-md);
+      padding: 36px 28px;
+      transition: var(--t);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .beneficio-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-md);
+      background: linear-gradient(135deg, rgba(0,229,255,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: var(--t);
+    }
+    .beneficio-card:hover {
+      border-color: rgba(0,229,255,0.30);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.30), 0 0 0 1px rgba(0,229,255,0.12);
+    }
+    .beneficio-card:hover::after { opacity: 1; }
+    .beneficio-icon {
+      width: 54px; height: 54px;
+      border-radius: var(--r-sm);
+      background: var(--cyan-dim);
+      border: 1px solid rgba(0,229,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      transition: var(--t);
+    }
+    .beneficio-card:hover .beneficio-icon { background: rgba(0,229,255,0.18); transform: scale(1.05); }
+    .beneficio-card h3 { font-size: 1.05rem; margin-bottom: 10px; color: var(--white); }
+    .beneficio-card p  { color: var(--white-70); font-size: 0.9rem; line-height: 1.6; }
+    .beneficios-cta { text-align: center; margin-top: 48px; }
+
+    /* ===== WA BUTTONS ===== */
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #25D366 0%, #1aad52 100%);
+      color: #fff;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 1.12rem;
+      padding: 20px 42px;
+      border-radius: 50px;
+      box-shadow: 0 10px 36px rgba(37,211,102,0.45);
+      transition: var(--t);
+      letter-spacing: -0.01em;
+      border: 2px solid rgba(255,255,255,0.18);
+    }
+    .btn-wa:hover { background: linear-gradient(135deg, #1aad52 0%, #128C7E 100%); transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 52px rgba(37,211,102,0.58); }
+    @media (max-width: 600px) {
+      .btn-wa, .btn-wa-hero { width: 100%; font-size: 1.05rem; padding: 20px 20px; }
+    }
+
+    /* ===== COMO FUNCIONA ===== */
+    #como-funciona {
+      background:
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,229,255,0.05) 0%, transparent 60%),
+        var(--ink);
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 52px;
+    }
+    .step {
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: var(--r-md);
+      padding: 36px 28px;
+      text-align: center;
+      transition: var(--t);
+      position: relative;
+    }
+    .step:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+    .step-number {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: var(--ink);
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(0,229,255,0.35);
+    }
+    .step h3 { margin-bottom: 10px; color: var(--white); font-size: 1.05rem; }
+    .step p  { color: var(--white-70); font-size: 0.92rem; line-height: 1.6; }
+
+    /* ===== PROPUESTA ===== */
+    #propuesta {
+      background:
+        radial-gradient(ellipse 60% 60% at 30% 50%, rgba(0,229,255,0.06) 0%, transparent 60%),
+        var(--surface);
+    }
+    .propuesta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 700px) { .propuesta-inner { grid-template-columns: 1fr; gap: 40px; } }
+    .propuesta-visual {
+      background: linear-gradient(135deg, var(--surface-2) 0%, var(--ink) 100%);
+      border: 1px solid rgba(0,229,255,0.18);
+      border-radius: var(--r-lg);
+      padding: 52px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .propuesta-visual::before {
+      content: '';
+      position: absolute;
+      top: -30%; left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,255,0.15) 0%, transparent 70%);
+    }
+    .propuesta-visual .big-emoji { font-size: 4.5rem; margin-bottom: 20px; position: relative; }
+    .propuesta-visual h3 { font-size: 1.35rem; color: var(--white); margin-bottom: 14px; position: relative; }
+    .propuesta-visual p  { color: var(--white-70); font-size: 0.95rem; line-height: 1.65; position: relative; }
+
+    .propuesta-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .propuesta-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1rem;
+      color: var(--white-70);
+      line-height: 1.55;
+    }
+    .propuesta-list li .check {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== FAQ ===== */
+    #faq { background: var(--ink); }
+    .faq-list {
+      max-width: 760px;
+      margin: 48px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      transition: var(--t);
+    }
+    .faq-item:hover { border-color: rgba(0,229,255,0.20); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 24px 28px;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--white-90);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: var(--t);
+    }
+    .faq-question:hover { color: var(--cyan); }
+    .faq-arrow {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      color: var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      transition: var(--t);
+    }
+    .faq-item.open .faq-arrow { background: var(--cyan); color: var(--ink); transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.28s ease;
+      padding: 0 28px;
+      color: var(--white-70);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 24px; }
+
+    /* ===== CTA FINAL ===== */
+    #cta-final {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,229,255,0.08) 0%, transparent 70%),
+        linear-gradient(180deg, var(--surface) 0%, var(--ink) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--white-06);
+    }
+    #cta-final::before {
+      content: '🦷';
+      position: absolute;
+      bottom: -30px; right: -20px;
+      font-size: 14rem;
+      opacity: 0.04;
+      pointer-events: none;
+      animation: float 10s ease-in-out infinite;
+    }
+    .urgencia-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,209,102,0.12);
+      border: 1px solid rgba(255,209,102,0.35);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      animation: glowPulse 2s ease infinite;
+    }
+    @keyframes glowPulse {
+      0%,100%{ box-shadow: 0 0 0 0 rgba(255,209,102,0); }
+      50%{ box-shadow: 0 0 20px 4px rgba(255,209,102,0.15); }
+    }
+    #cta-final h2 { margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    #cta-final > .container > p { color: var(--white-70); max-width: 500px; margin: 0 auto 40px; font-size: 1.05rem; }
+
+    .cta-final-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: linear-gradient(135deg, #25D366 0%, #1aad52 100%);
+      color: #fff;
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      padding: 26px 60px;
+      border-radius: 50px;
+      box-shadow: 0 14px 48px rgba(37,211,102,0.55), 0 0 0 5px rgba(37,211,102,0.18);
+      transition: var(--t);
+      letter-spacing: -0.02em;
+      border: 2px solid rgba(255,255,255,0.20);
+      animation: ctaPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes ctaPulse {
+      0%,100% { box-shadow: 0 14px 48px rgba(37,211,102,0.55), 0 0 0 5px rgba(37,211,102,0.18); }
+      50%      { box-shadow: 0 18px 64px rgba(37,211,102,0.72), 0 0 0 12px rgba(37,211,102,0.08); }
+    }
+    .cta-final-btn:hover { background: linear-gradient(135deg, #1aad52 0%, #128C7E 100%); transform: translateY(-5px) scale(1.03); box-shadow: 0 26px 72px rgba(37,211,102,0.68); animation: none; }
+    @media (max-width: 600px) { .cta-final-btn { width: 100%; font-size: 1.08rem; padding: 22px 20px; } }
+
+    .cta-note {
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: var(--white-40);
+    }
+    .cta-note span { color: var(--cyan); font-weight: 600; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--white-06);
+      padding: 44px 0 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .footer-logo span { color: var(--cyan); }
+    .footer-tagline { font-size: 0.85rem; color: var(--white-40); margin-bottom: 28px; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .footer-links a {
+      color: var(--white-40);
+      font-size: 0.88rem;
+      transition: var(--t);
+    }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-copy { font-size: 0.76rem; color: var(--white-40); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.10s; }
+    .reveal-delay-2 { transition-delay: 0.20s; }
+    .reveal-delay-3 { transition-delay: 0.30s; }
+    .reveal-delay-4 { transition-delay: 0.40s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">Smi<span>link</span></div>
+        <a href="https://wa.me/524493834548?text=Hola%2C%20me%20interesa%20Smilink.%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20el%20microchip%20dental%20inteligente."
+           target="_blank" rel="noopener" class="nav-cta">
+          💬 Contáctanos
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-badge"><div class="dot"></div> Tecnología dental del futuro</div>
+
+      <h1 class="hero-title">
+        Tu boca habla,<br>
+        <span class="grad">Smilink la escucha</span>
+        <span class="hero-subtitle-line">Monitoreo dental inteligente, en tiempo real</span>
+      </h1>
+
+      <p class="hero-desc">
+        Microchip dental que detecta placa bacteriana y pH al instante —
+        para que cuides tu salud periodontal <strong>antes de que duela</strong>.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/524493834548?text=Hola%2C%20me%20interesa%20Smilink.%20Me%20gustar%C3%ADa%20agendar%20mi%20valoraci%C3%B3n%20gratuita%20y%20conocer%20m%C3%A1s%20sobre%20el%20microchip%20dental%20inteligente."
+           target="_blank" rel="noopener" class="btn-wa-hero">
+          📱 Quiero mi Valoración Gratis
+        </a>
+        <a href="#como-funciona" class="btn-secondary">Ver cómo funciona →</a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item"><div class="icon">✅</div> Sin dolor</div>
+        <div class="trust-item"><div class="icon">⚡</div> Tiempo real</div>
+        <div class="trust-item"><div class="icon">🔒</div> Datos privados</div>
+        <div class="trust-item"><div class="icon">🎯</div> Sin formularios</div>
+      </div>
+    </div>
+    <div class="hero-float">🦷</div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-num grad">24/7</div>
+          <div class="stat-label">Monitoreo continuo</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num grad">100%</div>
+          <div class="stat-label">No invasivo</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num grad">&lt;30 min</div>
+          <div class="stat-label">Instalación</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEMA ===== -->
+  <section id="problema">
+    <div class="container">
+      <div class="problema-grid">
+        <div>
+          <div class="problema-chip reveal">⚠️ El problema real</div>
+          <h2 class="problema-title reveal">
+            ¿Cuándo fue la última vez que<br>
+            <span class="grad-warm">supiste cómo estaba tu boca?</span>
+          </h2>
+          <p class="problema-desc reveal reveal-delay-1">
+            La mayoría de los problemas bucales —periodontitis, caries, desajustes de pH— se acumulan en silencio.
+            Para cuando duele, ya es más costoso resolverlo.
+          </p>
+        </div>
+        <div class="problema-cards">
+          <div class="problema-card reveal">
+            <div class="problema-icon">🦠</div>
+            <div>
+              <h4>Placa bacteriana invisible</h4>
+              <p>Se acumula sin síntomas evidentes hasta que ya causó daño en tus encías.</p>
+            </div>
+          </div>
+          <div class="problema-card reveal reveal-delay-1">
+            <div class="problema-icon">⚗️</div>
+            <div>
+              <h4>pH fuera de control</h4>
+              <p>Un pH ácido destruye el esmalte lentamente. Nadie te avisa hasta la caries.</p>
+            </div>
+          </div>
+          <div class="problema-card reveal reveal-delay-2">
+            <div class="problema-icon">📅</div>
+            <div>
+              <h4>Revisiones cada 6 meses</h4>
+              <p>Para cuando vas al dentista, el daño periodontal ya avanzó sin que lo supieras.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFICIOS ===== -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="chip reveal">✦ Lo que Smilink hace por ti</div>
+      <h2 class="section-title reveal">Beneficios que <span class="grad">cambian</span> cómo cuidas tu boca</h2>
+      <p class="section-desc reveal reveal-delay-1">Una solución diseñada para darte control real sobre tu salud bucodental, sin visitas innecesarias y sin sorpresas.</p>
+
+      <div class="beneficios-grid">
+        <div class="beneficio-card reveal">
+          <div class="beneficio-icon">📡</div>
+          <h3>Monitoreo continuo en tiempo real</h3>
+          <p>Detecta cambios en placa bacteriana y pH al momento — no mañana, ahora.</p>
+        </div>
+        <div class="beneficio-card reveal reveal-delay-1">
+          <div class="beneficio-icon">🔔</div>
+          <h3>Alertas inteligentes</h3>
+          <p>Recibe notificaciones cuando hay algo que atender, antes de que se convierta en un problema mayor.</p>
+        </div>
+        <div class="beneficio-card reveal reveal-delay-2">
+          <div class="beneficio-icon">📊</div>
+          <h3>Historial de salud periodontal</h3>
+          <p>Lleva un registro detallado de la evolución de tu salud dental para compartir con tu odontólogo.</p>
+        </div>
+        <div class="beneficio-card reveal reveal-delay-3">
+          <div class="beneficio-icon">💸</div>
+          <h3>Prevención = ahorro</h3>
+          <p>Evita tratamientos costosos actuando a tiempo. La prevención siempre es más barata que la corrección.</p>
+        </div>
+        <div class="beneficio-card reveal">
+          <div class="beneficio-icon">🧬</div>
+          <h3>Tecnología no invasiva</h3>
+          <p>Diseñado para ser cómodo y discreto. Tu rutina no cambia; tu información mejora.</p>
+        </div>
+      </div>
+
+      <div class="beneficios-cta reveal">
+        <a href="https://wa.me/524493834548?text=Hola%2C%20me%20interesan%20los%20beneficios%20de%20Smilink.%20Me%20gustar%C3%ADa%20agendar%20mi%20valoraci%C3%B3n%20gratuita."
+           target="_blank" rel="noopener" class="btn-wa">
+          📱 Agendar mi Valoración Gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO FUNCIONA ===== -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="chip reveal">⚙️ El proceso</div>
+      <h2 class="section-title reveal">¿Cómo funciona <span class="grad">Smilink</span>?</h2>
+      <p class="section-desc reveal reveal-delay-1">En 4 pasos simples, tienes control total de tu salud dental.</p>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-number">1</div>
+          <h3>Valoración inicial</h3>
+          <p>Agenda tu cita gratuita vía WhatsApp. Evaluamos tu caso y determinamos si Smilink es para ti.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-number">2</div>
+          <h3>Instalación del microchip</h3>
+          <p>El proceso es rápido, sin dolor y completamente reversible. Sale en menos de 30 minutos.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-number">3</div>
+          <h3>Conecta tu dispositivo</h3>
+          <p>Vincula Smilink con tu smartphone. Desde ese momento empieza el monitoreo continuo.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-number">4</div>
+          <h3>Recibe alertas y actúa</h3>
+          <p>Recibe notificaciones inteligentes y comparte tus datos con tu dentista en tiempo real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROPUESTA DE VALOR ===== -->
+  <section id="propuesta">
+    <div class="container">
+      <div class="propuesta-inner">
+        <div class="propuesta-visual reveal">
+          <div class="big-emoji">🤖🦷</div>
+          <h3>La única solución que monitorea tu boca 24/7</h3>
+          <p>Datos reales, alertas inteligentes y un historial completo de tu salud periodontal — todo en tu bolsillo.</p>
+        </div>
+        <div>
+          <div class="chip reveal">🏆 ¿Por qué Smilink?</div>
+          <h2 class="reveal" style="margin-bottom:28px;">Lo que nos hace <span class="grad">diferentes</span></h2>
+          <ul class="propuesta-list">
+            <li class="reveal"><div class="check">✓</div><span>Monitoreo <strong>continuo</strong>, no solo en citas esporádicas</span></li>
+            <li class="reveal reveal-delay-1"><div class="check">✓</div><span>Alertas <strong>antes</strong> de que el problema aparezca</span></li>
+            <li class="reveal reveal-delay-2"><div class="check">✓</div><span>Historial exportable para compartir con tu odontólogo</span></li>
+            <li class="reveal reveal-delay-3"><div class="check">✓</div><span>Tecnología no invasiva, cómoda y discreta</span></li>
+            <li class="reveal reveal-delay-4"><div class="check">✓</div><span>Prevención activa que te ahorra dinero a largo plazo</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="chip reveal" style="display:table;margin:0 auto 18px;">❓ Dudas frecuentes</div>
+      <h2 class="reveal" style="text-align:center;margin-bottom:0;">Todo lo que necesitas saber</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            ¿El microchip duele al instalarse?
+            <div class="faq-arrow">▼</div>
+          </button>
+          <div class="faq-answer">No. El proceso de instalación es completamente indoloro, rápido (menos de 30 minutos) y reversible. No requiere cirugía ni anestesia general.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            ¿Con qué dispositivos es compatible?
+            <div class="faq-arrow">▼</div>
+          </button>
+          <div class="faq-answer">Smilink es compatible con smartphones iOS y Android mediante Bluetooth de bajo consumo. La app está disponible para ambas plataformas.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            ¿Es seguro tener un microchip en la boca?
+            <div class="faq-arrow">▼</div>
+          </button>
+          <div class="faq-answer">Sí. Smilink está fabricado con materiales biocompatibles, aprobados para uso odontológico. No emite radiación dañina y ha sido probado clínicamente.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            ¿Cuánto tiempo dura la batería o el dispositivo?
+            <div class="faq-arrow">▼</div>
+          </button>
+          <div class="faq-answer">Smilink utiliza tecnología de carga inalámbrica de bajo consumo. La duración exacta depende del modelo; te la explicamos en tu valoración gratuita.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            ¿Cómo agendo mi valoración?
+            <div class="faq-arrow">▼</div>
+          </button>
+          <div class="faq-answer">Solo haz clic en cualquier botón de WhatsApp en esta página. Te atenderemos en minutos para coordinar fecha, hora y lugar de tu valoración sin costo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section id="cta-final">
+    <div class="container">
+      <div class="urgencia-badge reveal">⚡ Solo primeros 10 lugares este mes</div>
+      <h2 class="reveal">
+        ¿Listo para dejar de adivinar<br>
+        <span class="grad">cómo está tu boca?</span>
+      </h2>
+      <p class="reveal reveal-delay-1">
+        Agenda hoy tu valoración gratuita y sé de los primeros en tener Smilink.
+        Cupos limitados — sin costo, sin compromiso.
+      </p>
+      <div class="reveal reveal-delay-2">
+        <a href="https://wa.me/524493834548?text=Hola%2C%20me%20interesa%20Smilink.%20Me%20gustar%C3%ADa%20agendar%20mi%20valoraci%C3%B3n%20gratuita%20y%20ser%20de%20los%20primeros%20en%20probarlo."
+           target="_blank" rel="noopener" class="cta-final-btn">
+          📱 Quiero mi Valoración Gratis — Agendar Ahora
+        </a>
+        <p class="cta-note">Respuesta en minutos · Sin formularios · <span>100% por WhatsApp</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">Smi<span>link</span></div>
+      <p class="footer-tagline">Tu salud dental, inteligente y en tiempo real.</p>
+      <div class="footer-links">
+        <a href="mailto:gu23la0170@globalu.edu.mx">✉️ gu23la0170@globalu.edu.mx</a>
+        <a href="https://wa.me/524493834548" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a href="https://instagram.com/smilink" target="_blank" rel="noopener">📷 @smilink</a>
+      </div>
+      <p class="footer-copy">© 2026 Smilink · Proyecto Académico 6to Semestre</p>
+    </div>
+  </footer>
+
+  <!-- ===== JS ===== -->
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Scroll reveal
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
